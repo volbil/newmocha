@@ -1,0 +1,70 @@
+Source: mocha
+Section: utils
+Priority: optional
+Maintainer: Holger Schinzel <holger@mocha.org>
+Uploaders: Holger Schinzel <holger@mocha.org>
+Build-Depends: debhelper,
+ devscripts,
+ automake,
+ libtool,
+ bash-completion,
+ libdb4.8++-dev,
+ libssl-dev,
+ pkg-config,
+ libevent-dev,
+ libboost-system1.48-dev | libboost-system-dev (>> 1.47),
+ libboost-filesystem1.48-dev | libboost-filesystem-dev (>> 1.47),
+ libboost-program-options1.48-dev | libboost-program-options-dev (>> 1.47),
+ libboost-thread1.48-dev | libboost-thread-dev (>> 1.47),
+ libboost-test1.48-dev | libboost-test-dev (>> 1.47),
+ libboost-chrono1.48-dev | libboost-chrono-dev (>> 1.47),
+ libminiupnpc8-dev | libminiupnpc-dev,
+ qt4-qmake, libqt4-dev,
+ qttools5-dev-tools, qttools5-dev,
+ libqrencode-dev,
+ libprotobuf-dev, protobuf-compiler,
+ python,
+ libzmq3-dev
+Standards-Version: 3.9.2
+Homepage: https://www.mocha.org/
+Vcs-Git: git://github.com/mochapay/mocha.git
+Vcs-Browser: https://github.com/mochapay/mocha
+
+Package: mochad
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - daemon
+ Mocha is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Mocha uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. Mocha Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides the daemon, mochad, and the CLI tool
+ mocha-cli to interact with the daemon.
+
+Package: mocha-qt
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - Qt GUI
+ Mocha is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Mocha uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. Mocha Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides Mocha-Qt, a GUI for Mocha based on Qt.
+
+Package: mocha-tx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer digital currency - standalone transaction tool
+ Mocha is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Mocha uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. Mocha Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides mocha-tx, a command-line transaction creation
+ tool which can be used without a mocha daemon.  Some means of
+ exchanging minimal transaction data with peers is still required.

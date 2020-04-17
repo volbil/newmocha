@@ -1,0 +1,6 @@
+usr/local/bin/mocha-qt usr/bin
+share/pixmaps/mocha32.xpm usr/share/pixmaps
+share/pixmaps/mocha16.xpm usr/share/pixmaps
+share/pixmaps/mocha128.png usr/share/pixmaps
+debian/mocha-qt.desktop usr/share/applications
+debian/mocha-qt.protocol usr/share/kde4/services/

@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  mochad The Mocha Core server.
+#
+#
+# chkconfig: 345 80 20
+# description: mochad
+# processname: mochad
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/mochad, see below
+if [ -f /etc/sysconfig/mochad ]; then
+        . /etc/sysconfig/mochad
+fi
+
+RETVAL=0
+
+prog=mochad
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/mochad
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/mochad}
+
+# mochad defaults to /usr/bin/mochad, override with BITCOIND_BIN
+mochad=${BITCOIND_BIN-/usr/bin/mochad}
+
+# mochad opts default to -disablewallet, override with BITCOIND_OPTS
+mochad_opts=${BITCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $mochad $mochad_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

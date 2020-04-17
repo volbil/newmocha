@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Mocha Core
+Comment=Mocha P2P Cryptocurrency
+Comment[de]=Verbinde mit dem Mocha peer-to-peer Netzwerk
+Comment[fr]=Mocha, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Mocha, eşten eşe kriptografik sanal para birimi
+Exec=mocha-qt %u
+Terminal=false
+Type=Application
+Icon=mocha128
+MimeType=x-scheme-handler/mocha;
+Categories=Office;Finance;
