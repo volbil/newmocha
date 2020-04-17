@@ -327,7 +327,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x5438c5571f813313e0ce8e06fbad9a23307b88cef086ce71f05f69f4ab9c05a5"));
 
         vSeeds.emplace_back("45.76.20.15", true);
-        // vSeeds.emplace_back("dnsseed.mochadot.io", true);
+        vSeeds.emplace_back("144.202.51.82", true);
 
         // Mocha addresses start with 'X'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,51);
