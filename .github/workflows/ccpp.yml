@@ -18,6 +18,8 @@ jobs:
       run: sudo apt-get install build-essential git libtool autotools-dev autoconf pkg-config libssl-dev libevent-dev -y && sudo apt install libssl1.0-dev -y && sudo apt-get install libboost-all-dev -y && sudo add-apt-repository ppa:bitcoin/bitcoin && sudo apt update && sudo apt-get install libdb4.8-dev libdb4.8++-dev -y
     - name: bls install
       run: sudo wget https://github.com/codablock/bls-signatures/archive/v20181101.zip && sudo unzip v20181101.zip && cd bls-signatures-20181101 && sudo git submodule update --init --recursive && sudo mkdir build && cd build && sudo cmake ../ && sudo cmake --build . -- -j 6 && sudo make install
+    - name: chmod some stuff
+      run: sudo chmod +x autogen.sh && sudo chmod 755 share/genbuild.sh
     - name: autogen
       run: sudo ./autogen.sh
     - name: configure
