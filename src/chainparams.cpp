@@ -326,9 +326,9 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x00000000a1b87c8b06c962478b385bcbee68125fda1c7fcfe2d6dfb8450a824c"));
         assert(genesis.hashMerkleRoot == uint256S("0x5438c5571f813313e0ce8e06fbad9a23307b88cef086ce71f05f69f4ab9c05a5"));
 
-//         vSeeds.emplace_back("45.76.20.15", true); These nodes out of sync; make a temporary one below
-//         vSeeds.emplace_back("144.202.51.82", true);
-        vSeeds.emplace_back("67.212.126.76", true);
+        vSeeds.emplace_back("45.76.20.15", true); 
+        vSeeds.emplace_back("144.202.51.82", true);
+        // vSeeds.emplace_back("67.212.126.76", true); This node is always right
 
         // Mocha addresses start with 'X'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,51);
@@ -356,7 +356,7 @@ public:
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fRequireRoutableExternalIP = true;
-        fMineBlocksOnDemand = true;
+        fMineBlocksOnDemand = false;
         fAllowMultipleAddressesFromGroup = false;
         fAllowMultiplePorts = false;
 
