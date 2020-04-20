@@ -356,7 +356,7 @@ public:
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fRequireRoutableExternalIP = true;
-        fMineBlocksOnDemand = false;
+        fMineBlocksOnDemand = true;
         fAllowMultipleAddressesFromGroup = false;
         fAllowMultiplePorts = false;
 
