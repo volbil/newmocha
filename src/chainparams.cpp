@@ -257,8 +257,8 @@ public:
         consensus.DIP0003EnforcementHash = uint256S("0x00"); // Change when block height is reached
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
         consensus.nPowTargetTimespan = 24 * 60 * 60; // Mocha: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // Mocha: 2.5 minutes
-        consensus.fPowAllowMinDifficultyBlocks = false;
+        consensus.nPowTargetSpacing = 2.0 * 60; // Mocha: 2 minutes
+        consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nPowKGWHeight = 15200;
         consensus.nPowDGWHeight = 34140;
