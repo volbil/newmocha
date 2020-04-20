@@ -353,7 +353,7 @@ public:
         consensus.llmqTypeChainLocks = Consensus::LLMQ_400_60;
         consensus.llmqTypeInstantSend = Consensus::LLMQ_50_60;
 
-        fDefaultConsistencyChecks = false;
+        fDefaultConsistencyChecks = true;
         fRequireStandard = true;
         fRequireRoutableExternalIP = true;
         fMineBlocksOnDemand = true;
