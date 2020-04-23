@@ -33,7 +33,7 @@ uint256 CBlockHeaderUncached::GetPoWHash() const
         .version = YESPOWER_1_0,
         .N = 2048,
         .r = 32,
-        .pers = (const uint8_t *)"Decentralization is key - 4/5/20",
+        .pers = (const uint8_t *)"Decentralization is key - 4/16/20",
         .perslen = 32
     };
     uint256 hash;
