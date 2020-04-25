@@ -330,7 +330,7 @@ public:
 	uint32_t nTime = 1587079765;
         uint32_t nNonce = 0;
         if (nNonce == 0) {
-           while (UintToArith256(genesis.GetHashYespower()) > UintToArith256(consensus.powLimit)) {
+           while (UintToArith256(genesis.GetPoWHash()) > UintToArith256(consensus.powLimit)) {
               nNonce++;
               genesis = CreateGenesisBlock(nTime, nNonce, 0x1f0fffff, 1, 50 * COIN);
               if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
@@ -497,7 +497,7 @@ public:
 	uint32_t nTime = 1587079780;
         uint32_t nNonce = 0;
         if (nNonce == 0) {
-           while (UintToArith256(genesis.GetHashYespower()) > UintToArith256(consensus.powLimit)) {
+           while (UintToArith256(genesis.GetPoWHash()) > UintToArith256(consensus.powLimit)) {
               nNonce++;
               genesis = CreateGenesisBlock(nTime, nNonce, 0x1f0fffff, 1, 50 * COIN);
               if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
@@ -666,7 +666,7 @@ public:
 	uint32_t nTime = 1586121329;
         uint32_t nNonce = 0;
         if (nNonce == 0) {
-           while (UintToArith256(genesis.GetHashYespower()) > UintToArith256(consensus.powLimit)) {
+           while (UintToArith256(genesis.GetPoWHash()) > UintToArith256(consensus.powLimit)) {
               nNonce++;
               genesis = CreateGenesisBlock(nTime, nNonce, 0x200fffff, 1, 50 * COIN);
               if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
@@ -815,7 +815,7 @@ public:
 	uint32_t nTime = 1585926845;
         uint32_t nNonce = 0;
         if (nNonce == 0) {
-           while (UintToArith256(genesis.GetHashYespower()) > UintToArith256(consensus.powLimit)) {
+           while (UintToArith256(genesis.GetPoWHash()) > UintToArith256(consensus.powLimit)) {
               nNonce++;
               genesis = CreateGenesisBlock(nTime, nNonce, 0x200fffff, 1, 50 * COIN);
               if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
