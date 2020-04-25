@@ -18,6 +18,7 @@
 #include "chainparamsseeds.h"
 
 #include "pow.h" // this is for the "generate the genesis block" code
+#include <primitives/block.h>
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
