@@ -17,13 +17,15 @@
 
 #include "chainparamsseeds.h"
 
+#include "pow.h" // this is for the "generate the genesis block" code
+
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     CMutableTransaction txNew;
     txNew.nVersion = 1;
     txNew.vin.resize(1);
     txNew.vout.resize(1);
-    txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << std::vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
+    txNew.vin[0].scriptSig = CScript() << 521142271 << CScriptNum(4) << std::vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
     txNew.vout[0].nValue = genesisReward;
     txNew.vout[0].scriptPubKey = genesisOutputScript;
 
@@ -255,7 +257,7 @@ public:
         consensus.DIP0003Height = 1028160;
         consensus.DIP0003EnforcementHeight = 1047200;
         consensus.DIP0003EnforcementHash = uint256S("0x00"); // Change when block height is reached
-        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
+        consensus.powLimit = uint256S("0x000fffff00000000000000000000000000000000000000000000000000000000"); // yespower diff...
         consensus.nPowTargetTimespan = 24 * 60 * 60; // Mocha: 1 day
         consensus.nPowTargetSpacing = 2.0 * 60; // Mocha: 2 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -321,10 +323,25 @@ public:
         nDefaultPort = 21103;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1587079765, 1969467223, 0x1d00ffff, 1, 50 * COIN);
+  //      genesis = CreateGenesisBlock(1587079765, 1969467223, 0x1f0fffff, 1, 50 * COIN);
+
+	// Here is the code to generate a yespower genesis block !
+	uint32_t nTime = 1587079765;
+        uint32_t nNonce = 0;
+        if (nNonce == 0) {
+           while (UintToArith256(genesis.GetHashYespower()) > UintToArith256(consensus.powLimit)) {
+              nNonce++;
+              genesis = CreateGenesisBlock(nTime, nNonce, 0x1f0fffff, 1, 50 * COIN);
+              if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
+           }
+           printf("\n%s\n", genesis.ToString().c_str());
+        }
+        genesis = CreateGenesisBlock(nTime, nNonce, 0x1f0fffff, 1, 50 * COIN);
+
+
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000000a1b87c8b06c962478b385bcbee68125fda1c7fcfe2d6dfb8450a824c"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5438c5571f813313e0ce8e06fbad9a23307b88cef086ce71f05f69f4ab9c05a5"));
+ //       assert(consensus.hashGenesisBlock == uint256S("0x00000000a1b87c8b06c962478b385bcbee68125fda1c7fcfe2d6dfb8450a824c"));
+ //       assert(genesis.hashMerkleRoot == uint256S("0x5438c5571f813313e0ce8e06fbad9a23307b88cef086ce71f05f69f4ab9c05a5"));
 
         vSeeds.emplace_back("45.76.20.15", true); 
         vSeeds.emplace_back("144.202.51.82", true);
@@ -370,7 +387,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {0, uint256S("0x00000000a1b87c8b06c962478b385bcbee68125fda1c7fcfe2d6dfb8450a824c")},
+    //            {0, uint256S("0x00000000a1b87c8b06c962478b385bcbee68125fda1c7fcfe2d6dfb8450a824c")},
             }
         };
 
@@ -413,7 +430,7 @@ public:
         consensus.DIP0003Height = 7000;
         consensus.DIP0003EnforcementHeight = 7300;
         consensus.DIP0003EnforcementHash = uint256S("00000055ebc0e974ba3a3fb785c5ad4365a39637d4df168169ee80d313612f8f");
-        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
+        consensus.powLimit = uint256S("0x000fffff00000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetTimespan = 24 * 60 * 60; // Mocha: 1 day
         consensus.nPowTargetSpacing = 2.5 * 60; // Mocha: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -473,10 +490,27 @@ public:
         nDefaultPort = 20202;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1587079780, 3724761968, 0x1d00ffff, 1, 50 * COIN);
+    //    genesis = CreateGenesisBlock(1587079780, 3724761968, 0x1d00ffff, 1, 50 * COIN);
+
+	// Here is the code to generate a yespower genesis block !
+	uint32_t nTime = 1587079780;
+        uint32_t nNonce = 0;
+        if (nNonce == 0) {
+           while (UintToArith256(genesis.GetHashYespower()) > UintToArith256(consensus.powLimit)) {
+              nNonce++;
+              genesis = CreateGenesisBlock(nTime, nNonce, 0x1f0fffff, 1, 50 * COIN);
+              if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
+           }
+           printf("\n%s\n", genesis.ToString().c_str());
+        }
+
+
+        genesis = CreateGenesisBlock(nTime, nNonce, 0x1f0fffff, 1, 50 * COIN);
+
+
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000000093339c345c4b8a031a38e14393e9c024c74f9690d752f7a0506e2502"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5438c5571f813313e0ce8e06fbad9a23307b88cef086ce71f05f69f4ab9c05a5"));
+    //    assert(consensus.hashGenesisBlock == uint256S("0x0000000093339c345c4b8a031a38e14393e9c024c74f9690d752f7a0506e2502"));
+    //    assert(genesis.hashMerkleRoot == uint256S("0x5438c5571f813313e0ce8e06fbad9a23307b88cef086ce71f05f69f4ab9c05a5"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -523,7 +557,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {0, uint256S("0x0000000093339c345c4b8a031a38e14393e9c024c74f9690d752f7a0506e2502")},
+   //             {0, uint256S("0x0000000093339c345c4b8a031a38e14393e9c024c74f9690d752f7a0506e2502")},
             }
         };
 
@@ -566,7 +600,7 @@ public:
         consensus.DIP0003Height = 2; // DIP0003 activated immediately on devnet
         consensus.DIP0003EnforcementHeight = 2; // DIP0003 activated immediately on devnet
         consensus.DIP0003EnforcementHash = uint256();
-        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
+        consensus.powLimit = uint256S("0fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 24 * 60 * 60; // Mocha: 1 day
         consensus.nPowTargetSpacing = 2.5 * 60; // Mocha: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -625,10 +659,25 @@ public:
         nDefaultPort = 19799;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1586121329, 1369064, 0x1e0ffff0, 1, 50 * COIN);
+  //      genesis = CreateGenesisBlock(1586121329, 1369064, 0x200fffff, 1, 50 * COIN);
+
+	// Here is the code to generate a yespower genesis block !
+	uint32_t nTime = 1586121329;
+        uint32_t nNonce = 0;
+        if (nNonce == 0) {
+           while (UintToArith256(genesis.GetHashYespower()) > UintToArith256(consensus.powLimit)) {
+              nNonce++;
+              genesis = CreateGenesisBlock(nTime, nNonce, 0x200fffff, 1, 50 * COIN);
+              if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
+           }
+           printf("\n%s\n", genesis.ToString().c_str());
+        }
+
+
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000d8bf817a2f2d04a97fb7702b31762d4d21ca9a1bc51500f20a166ffca01"));
-        assert(genesis.hashMerkleRoot == uint256S("0x77e8ce7e12c3d77e765d8be8dfda10259b1e3dbdce826f6807eedb9508454420"));
+  
+  //      assert(consensus.hashGenesisBlock == uint256S("0x00000d8bf817a2f2d04a97fb7702b31762d4d21ca9a1bc51500f20a166ffca01"));
+  //      assert(genesis.hashMerkleRoot == uint256S("0x77e8ce7e12c3d77e765d8be8dfda10259b1e3dbdce826f6807eedb9508454420"));
 
         devnetGenesis = FindDevNetGenesisBlock(consensus, genesis, 50 * COIN);
         consensus.hashDevnetGenesisBlock = devnetGenesis.GetHash();
@@ -675,8 +724,8 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                { 0, uint256S("0x00000d8bf817a2f2d04a97fb7702b31762d4d21ca9a1bc51500f20a166ffca01")},
-                { 1, devnetGenesis.GetHash() },
+     //           { 0, uint256S("0x00000d8bf817a2f2d04a97fb7702b31762d4d21ca9a1bc51500f20a166ffca01")},
+     //           { 1, devnetGenesis.GetHash() },
             }
         };
 
@@ -718,7 +767,7 @@ public:
         consensus.DIP0003Height = 432;
         consensus.DIP0003EnforcementHeight = 500;
         consensus.DIP0003EnforcementHash = uint256();
-        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
+        consensus.powLimit = uint256S("0fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
         consensus.nPowTargetTimespan = 24 * 60 * 60; // Mocha: 1 day
         consensus.nPowTargetSpacing = 2.5 * 60; // Mocha: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -759,10 +808,25 @@ public:
         nDefaultPort = 29292;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1585926845, 990878, 0x1E0FFFF0, 1, 50 * COIN);
+  //      genesis = CreateGenesisBlock(1585926845, 990878, 0x200fffff, 1, 50 * COIN);
+
+	// Here is the code to generate a yespower genesis block !
+	uint32_t nTime = 1585926845;
+        uint32_t nNonce = 0;
+        if (nNonce == 0) {
+           while (UintToArith256(genesis.GetHashYespower()) > UintToArith256(consensus.powLimit)) {
+              nNonce++;
+              genesis = CreateGenesisBlock(nTime, nNonce, 0x200fffff, 1, 50 * COIN);
+              if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
+           }
+           printf("\n%s\n", genesis.ToString().c_str());
+        }
+
+
+
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000000c054ee1f7c864409e0c8b9ada130bb54233b7ea4a9fac6a85f2ac16a27"));
-        assert(genesis.hashMerkleRoot == uint256S("0x77e8ce7e12c3d77e765d8be8dfda10259b1e3dbdce826f6807eedb9508454420"));
+   //     assert(consensus.hashGenesisBlock == uint256S("0x000000c054ee1f7c864409e0c8b9ada130bb54233b7ea4a9fac6a85f2ac16a27"));
+   //     assert(genesis.hashMerkleRoot == uint256S("0x77e8ce7e12c3d77e765d8be8dfda10259b1e3dbdce826f6807eedb9508454420"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -786,7 +850,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {0, uint256S("0x000000c054ee1f7c864409e0c8b9ada130bb54233b7ea4a9fac6a85f2ac16a27")},
+    //            {0, uint256S("0x000000c054ee1f7c864409e0c8b9ada130bb54233b7ea4a9fac6a85f2ac16a27")},
             }
         };
 
