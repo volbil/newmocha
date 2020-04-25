@@ -1005,7 +1005,7 @@ double ConvertBitsToDouble(unsigned int nBits)
 }
 
 /*
-NOTE:   unlike mocha we are using PREVIOUS block height here,
+NOTE:   unlike Bitcoin we are using PREVIOUS block height here,
         might be a good idea to change this to use prev bits
         but current height to avoid confusion.
 */
