@@ -1015,9 +1015,9 @@ CAmount GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params&
     double dDiff;
     CAmount nSubsidyBase;
 
-    if (nHeight == 1)
+    if (nPrevHeight + 1 == 1)
         return 532250 * COIN;
-    if (nHeight == 2)
+    if (nPrevHeight + 1 == 2)
         return 532250 * COIN;
 
 
