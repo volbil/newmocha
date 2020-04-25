@@ -17,8 +17,6 @@
 
 #include "chainparamsseeds.h"
 
-#include "pow.h" // this is for the "generate the genesis block" code
-#include <primitives/block.h>
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
@@ -324,25 +322,12 @@ public:
         nDefaultPort = 21103;
         nPruneAfterHeight = 100000;
 
-  //      genesis = CreateGenesisBlock(1587079765, 1969467223, 0x1f0fffff, 1, 50 * COIN);
-
-	// Here is the code to generate a yespower genesis block !
-	uint32_t nTime = 1587079765;
-        uint32_t nNonce = 0;
-        if (nNonce == 0) {
-           while (UintToArith256(genesis.GetPoWHash()) > UintToArith256(consensus.powLimit)) {
-              nNonce++;
-              genesis = CreateGenesisBlock(nTime, nNonce, 0x1f0fffff, 1, 50 * COIN);
-              if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
-           }
-           printf("\n%s\n", genesis.ToString().c_str());
-        }
-        genesis = CreateGenesisBlock(nTime, nNonce, 0x1f0fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1587079765, 2243, 0x1f0fffff, 1, 50 * COIN);
 
 
         consensus.hashGenesisBlock = genesis.GetHash();
- //       assert(consensus.hashGenesisBlock == uint256S("0x00000000a1b87c8b06c962478b385bcbee68125fda1c7fcfe2d6dfb8450a824c"));
- //       assert(genesis.hashMerkleRoot == uint256S("0x5438c5571f813313e0ce8e06fbad9a23307b88cef086ce71f05f69f4ab9c05a5"));
+        assert(consensus.hashGenesisBlock == uint256S("0x56ac79d5dd72b0e14b0b728b5acdd5ab255effaaa9ee2e2dd1786fd5512b03a3"));
+        assert(genesis.hashMerkleRoot == uint256S("0x6df7a23edf7b3af84edbdbf6198d7727da5117a6fe7ce5bd9208961d7f19bf02"));
 
         vSeeds.emplace_back("45.76.20.15", true); 
         vSeeds.emplace_back("144.202.51.82", true);
@@ -388,7 +373,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-    //            {0, uint256S("0x00000000a1b87c8b06c962478b385bcbee68125fda1c7fcfe2d6dfb8450a824c")},
+                {0, uint256S("0x56ac79d5dd72b0e14b0b728b5acdd5ab255effaaa9ee2e2dd1786fd5512b03a3")},
             }
         };
 
@@ -491,27 +476,11 @@ public:
         nDefaultPort = 20202;
         nPruneAfterHeight = 1000;
 
-    //    genesis = CreateGenesisBlock(1587079780, 3724761968, 0x1d00ffff, 1, 50 * COIN);
-
-	// Here is the code to generate a yespower genesis block !
-	uint32_t nTime = 1587079780;
-        uint32_t nNonce = 0;
-        if (nNonce == 0) {
-           while (UintToArith256(genesis.GetPoWHash()) > UintToArith256(consensus.powLimit)) {
-              nNonce++;
-              genesis = CreateGenesisBlock(nTime, nNonce, 0x1f0fffff, 1, 50 * COIN);
-              if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
-           }
-           printf("\n%s\n", genesis.ToString().c_str());
-        }
-
-
-        genesis = CreateGenesisBlock(nTime, nNonce, 0x1f0fffff, 1, 50 * COIN);
-
+        genesis = CreateGenesisBlock(1587079780, 687, 0x1f0fffff, 1, 50 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
-    //    assert(consensus.hashGenesisBlock == uint256S("0x0000000093339c345c4b8a031a38e14393e9c024c74f9690d752f7a0506e2502"));
-    //    assert(genesis.hashMerkleRoot == uint256S("0x5438c5571f813313e0ce8e06fbad9a23307b88cef086ce71f05f69f4ab9c05a5"));
+        assert(consensus.hashGenesisBlock == uint256S("0x06bcdf302a0bfa9e87f91030abfd7c19458912a9391a8d930bfbfd4f2c05a851"));
+        assert(genesis.hashMerkleRoot == uint256S("0x6df7a23edf7b3af84edbdbf6198d7727da5117a6fe7ce5bd9208961d7f19bf02"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -558,7 +527,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-   //             {0, uint256S("0x0000000093339c345c4b8a031a38e14393e9c024c74f9690d752f7a0506e2502")},
+                {0, uint256S("0x06bcdf302a0bfa9e87f91030abfd7c19458912a9391a8d930bfbfd4f2c05a851")},
             }
         };
 
@@ -660,25 +629,12 @@ public:
         nDefaultPort = 19799;
         nPruneAfterHeight = 1000;
 
-  //      genesis = CreateGenesisBlock(1586121329, 1369064, 0x200fffff, 1, 50 * COIN);
-
-	// Here is the code to generate a yespower genesis block !
-	uint32_t nTime = 1586121329;
-        uint32_t nNonce = 0;
-        if (nNonce == 0) {
-           while (UintToArith256(genesis.GetPoWHash()) > UintToArith256(consensus.powLimit)) {
-              nNonce++;
-              genesis = CreateGenesisBlock(nTime, nNonce, 0x200fffff, 1, 50 * COIN);
-              if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
-           }
-           printf("\n%s\n", genesis.ToString().c_str());
-        }
-
+        genesis = CreateGenesisBlock(1585926845, 74, 0x200fffff, 1, 50 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
   
-  //      assert(consensus.hashGenesisBlock == uint256S("0x00000d8bf817a2f2d04a97fb7702b31762d4d21ca9a1bc51500f20a166ffca01"));
-  //      assert(genesis.hashMerkleRoot == uint256S("0x77e8ce7e12c3d77e765d8be8dfda10259b1e3dbdce826f6807eedb9508454420"));
+        assert(consensus.hashGenesisBlock == uint256S("0x9c525acedcbd81f15ed427423f3b143c35bb25a8ffbcbc0da597d51e75a23d4c"));
+        assert(genesis.hashMerkleRoot == uint256S("0x6df7a23edf7b3af84edbdbf6198d7727da5117a6fe7ce5bd9208961d7f19bf02"));
 
         devnetGenesis = FindDevNetGenesisBlock(consensus, genesis, 50 * COIN);
         consensus.hashDevnetGenesisBlock = devnetGenesis.GetHash();
@@ -725,8 +681,8 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-     //           { 0, uint256S("0x00000d8bf817a2f2d04a97fb7702b31762d4d21ca9a1bc51500f20a166ffca01")},
-     //           { 1, devnetGenesis.GetHash() },
+                { 0, uint256S("0x9c525acedcbd81f15ed427423f3b143c35bb25a8ffbcbc0da597d51e75a23d4c")},
+                { 1, devnetGenesis.GetHash() },
             }
         };
 
@@ -809,25 +765,11 @@ public:
         nDefaultPort = 29292;
         nPruneAfterHeight = 1000;
 
-  //      genesis = CreateGenesisBlock(1585926845, 990878, 0x200fffff, 1, 50 * COIN);
-
-	// Here is the code to generate a yespower genesis block !
-	uint32_t nTime = 1585926845;
-        uint32_t nNonce = 0;
-        if (nNonce == 0) {
-           while (UintToArith256(genesis.GetPoWHash()) > UintToArith256(consensus.powLimit)) {
-              nNonce++;
-              genesis = CreateGenesisBlock(nTime, nNonce, 0x200fffff, 1, 50 * COIN);
-              if (nNonce % 128 == 0) printf("\rnonce %08x", nNonce);
-           }
-           printf("\n%s\n", genesis.ToString().c_str());
-        }
-
-
+        genesis = CreateGenesisBlock(1585926845, 74, 0x200fffff, 1, 50 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
-   //     assert(consensus.hashGenesisBlock == uint256S("0x000000c054ee1f7c864409e0c8b9ada130bb54233b7ea4a9fac6a85f2ac16a27"));
-   //     assert(genesis.hashMerkleRoot == uint256S("0x77e8ce7e12c3d77e765d8be8dfda10259b1e3dbdce826f6807eedb9508454420"));
+        assert(consensus.hashGenesisBlock == uint256S("0x9c525acedcbd81f15ed427423f3b143c35bb25a8ffbcbc0da597d51e75a23d4c"));
+        assert(genesis.hashMerkleRoot == uint256S("0x6df7a23edf7b3af84edbdbf6198d7727da5117a6fe7ce5bd9208961d7f19bf02"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -851,7 +793,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-    //            {0, uint256S("0x000000c054ee1f7c864409e0c8b9ada130bb54233b7ea4a9fac6a85f2ac16a27")},
+                {0, uint256S("0x9c525acedcbd81f15ed427423f3b143c35bb25a8ffbcbc0da597d51e75a23d4c")},
             }
         };
 
