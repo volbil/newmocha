@@ -111,7 +111,7 @@ static void CheckBlockIndex(const Consensus::Params& consensusParams);
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const std::string strMessageMagic = "DarkCoin Signed Message:\n";
+const std::string strMessageMagic = "MOCHA Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -1013,6 +1013,12 @@ CAmount GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params&
 {
     double dDiff;
     CAmount nSubsidyBase;
+
+    if (nPrevHeight + 1 == 1)
+        return 532250 * COIN;
+
+    if (nPrevHeight + 1 == 2)
+        return 532250 * COIN;
 
     if (nPrevHeight <= 4500 && Params().NetworkIDString() == CBaseChainParams::MAIN) {
         /* a bug which caused diff to not be correctly calculated */
