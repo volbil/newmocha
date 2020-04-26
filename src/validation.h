@@ -18,6 +18,7 @@
 #include "policy/feerate.h"
 #include "script/script_error.h"
 #include "sync.h"
+#include "util.h"
 #include "versionbits.h"
 #include "spentindex.h"
 
@@ -188,6 +189,8 @@ extern CFeeRate minRelayTxFee;
 extern CAmount maxTxFee;
 /** If the tip is older than this (in seconds), the node is considered to be in initial block download. */
 extern int64_t nMaxTipAge;
+
+extern const int nYesPowerFork;
 
 extern bool fLargeWorkForkFound;
 extern bool fLargeWorkInvalidChainFound;
@@ -500,5 +503,7 @@ void DumpMempool();
 
 /** Load the mempool from disk. */
 bool LoadMempool();
+
+bool IsYesPower(int nHeight);
 
 #endif // BITCOIN_VALIDATION_H

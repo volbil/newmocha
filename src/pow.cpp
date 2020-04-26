@@ -197,6 +197,11 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         }
     }
 
+    // just to test the miner...
+    if ((pindexLast->nHeight + 1 >= 1) &&
+        (pindexLast->nHeight <= 100))
+        return UintToArith256(params.powLimit2).GetCompact();
+
     if (pindexLast->nHeight + 1 < params.nPowDGWHeight) {
         return KimotoGravityWell(pindexLast, params);
     }
