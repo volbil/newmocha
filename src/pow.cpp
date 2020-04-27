@@ -81,11 +81,16 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const Conse
 
 unsigned int static DarkGravityWave(const CBlockIndex* pindexLast, const Consensus::Params& params) {
     /* current difficulty formula, mocha - DarkGravity v3, written by Evan Duffield - evan@mocha.org */
-    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
+    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit2);
     int64_t nPastBlocks = 24;
 
     // make sure we have at least (nPastBlocks + 1) blocks, otherwise just return powLimit
     if (!pindexLast || pindexLast->nHeight < nPastBlocks) {
+        return bnPowLimit.GetCompact();
+    }
+
+    // reset diff to min ( powlimit2 ) at yespower fork height 
+    if (pindexLast->nHeight + 1 == 30) {
         return bnPowLimit.GetCompact();
     }
 
@@ -176,7 +181,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         return bnPowLimit.GetCompact();
     }
 
-    if (pindexLast->nHeight + 1 < params.nPowKGWHeight) {
+    if (pindexLast->nHeight + 1 < params.nPowDGWHeight) {
         return GetNextWorkRequiredBTC(pindexLast, pblock, params);
     }
 
@@ -197,14 +202,10 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         }
     }
 
-    // just to test the miner...
-    if ((pindexLast->nHeight + 1 >= 1) &&
-        (pindexLast->nHeight <= 100))
-        return UintToArith256(params.powLimit2).GetCompact();
 
-    if (pindexLast->nHeight + 1 < params.nPowDGWHeight) {
-        return KimotoGravityWell(pindexLast, params);
-    }
+//    if (pindexLast->nHeight + 1 < params.nPowDGWHeight) {
+//        return KimotoGravityWell(pindexLast, params);
+//    }
 
     return DarkGravityWave(pindexLast, params);
 }

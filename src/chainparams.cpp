@@ -256,13 +256,13 @@ public:
         consensus.DIP0003EnforcementHeight = 1047200;
         consensus.DIP0003EnforcementHash = uint256S("0x00"); // Change when block height is reached
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.powLimit2 = uint256S("0007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit2 = uint256S("007fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 24 * 60 * 60; // Mocha: 1 day
         consensus.nPowTargetSpacing = 2.0 * 60; // Mocha: 2 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-        consensus.nPowKGWHeight = 15200;
-        consensus.nPowDGWHeight = 34140;
+        consensus.nPowKGWHeight = 1520000000; // never used
+        consensus.nPowDGWHeight = 30; // must be the same as nYespowerFork in validation.cpp line 96
         consensus.nRuleChangeActivationThreshold = 1916; // 95% of 2016
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
