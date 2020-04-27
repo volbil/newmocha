@@ -322,12 +322,12 @@ public:
         nDefaultPort = 21103;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1587079765, 2243, 0x1f0fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1587942187, 3137983373, 0x1d00ffff, 1, 50 * COIN);
 
 
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x56ac79d5dd72b0e14b0b728b5acdd5ab255effaaa9ee2e2dd1786fd5512b03a3"));
-        assert(genesis.hashMerkleRoot == uint256S("0x6df7a23edf7b3af84edbdbf6198d7727da5117a6fe7ce5bd9208961d7f19bf02"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000000f285eac2b5c58858b83c1e24b519574488ff8199705dc8621aa851ea"));
+        assert(genesis.hashMerkleRoot == uint256S("0xc2f8215a06f8fa3e6ced5a35b4f99aa0140bedfc1d0e355ef826ccec73d60559"));
 
         vSeeds.emplace_back("45.76.20.15", true); 
         vSeeds.emplace_back("144.202.51.82", true);
@@ -373,7 +373,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {0, uint256S("0x56ac79d5dd72b0e14b0b728b5acdd5ab255effaaa9ee2e2dd1786fd5512b03a3")},
+                {0, uint256S("0x00000000f285eac2b5c58858b83c1e24b519574488ff8199705dc8621aa851ea")},
             }
         };
 
@@ -476,11 +476,11 @@ public:
         nDefaultPort = 20202;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1587079780, 687, 0x1f0fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1587942199, 524639047, 0x1d00ffff, 1, 50 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x06bcdf302a0bfa9e87f91030abfd7c19458912a9391a8d930bfbfd4f2c05a851"));
-        assert(genesis.hashMerkleRoot == uint256S("0x6df7a23edf7b3af84edbdbf6198d7727da5117a6fe7ce5bd9208961d7f19bf02"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000000009be0d78baa7a7230fe24380e4a5c4abaa31b76c1ed7621049291cea9"));
+        assert(genesis.hashMerkleRoot == uint256S("0xc2f8215a06f8fa3e6ced5a35b4f99aa0140bedfc1d0e355ef826ccec73d60559"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -527,7 +527,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {0, uint256S("0x06bcdf302a0bfa9e87f91030abfd7c19458912a9391a8d930bfbfd4f2c05a851")},
+                {0, uint256S("0x000000009be0d78baa7a7230fe24380e4a5c4abaa31b76c1ed7621049291cea9")},
             }
         };
 
