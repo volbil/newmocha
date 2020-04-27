@@ -262,7 +262,7 @@ public:
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nPowKGWHeight = 1520000000; // never used
-        consensus.nPowDGWHeight = 30; // must be the same as nYespowerFork in validation.cpp line 96
+        consensus.nPowDGWHeight = 8; // must be the same as nYespowerFork in validation.cpp line 96
         consensus.nRuleChangeActivationThreshold = 1916; // 95% of 2016
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;

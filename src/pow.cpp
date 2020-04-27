@@ -89,11 +89,6 @@ unsigned int static DarkGravityWave(const CBlockIndex* pindexLast, const Consens
         return bnPowLimit.GetCompact();
     }
 
-    // reset diff to min ( powlimit2 ) at yespower fork height 
-    if (pindexLast->nHeight + 1 == 30) {
-        return bnPowLimit.GetCompact();
-    }
-
     const CBlockIndex *pindex = pindexLast;
     arith_uint256 bnPastTargetAvg;
 
