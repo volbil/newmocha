@@ -31,7 +31,7 @@ void GenesisGenerator(CBlock genesis) {
         hash = genesis.GetHash();
         if (UintToArith256(hash) <= bnTarget)
             break;
-        if ((genesis.nNonce & 0xFFF) > 1000)
+        if ((genesis.nNonce & 0xFFF) == 0)
         {
             printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, hash.ToString().c_str(), bnTarget.ToString().c_str());
         }
@@ -352,10 +352,9 @@ public:
         nDefaultPort = 21105;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1587079765, 1969468409, 0x1f3fffff, 1, 50 * COIN);
-        GenesisGenerator(genesis);
+        genesis = CreateGenesisBlock(1587079765, 1969467223, 0x1f3fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x002c74ee5479b195f08cfd8294683651013343dfbc299061ac63ee12890eb24a"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000000a1b87c8b06c962478b385bcbee68125fda1c7fcfe2d6dfb8450a824c"));
         assert(genesis.hashMerkleRoot == uint256S("0x5438c5571f813313e0ce8e06fbad9a23307b88cef086ce71f05f69f4ab9c05a5"));
 
         vSeeds.emplace_back("45.76.20.15", true); 
