@@ -31,7 +31,7 @@ void GenesisGenerator(CBlock genesis) {
         hash = genesis.GetHash();
         if (UintToArith256(hash) <= bnTarget)
             break;
-        if ((genesis.nNonce & 0xFFF) == 0)
+        if ((genesis.nNonce & 0xFFF) > 1000)
         {
             printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, hash.ToString().c_str(), bnTarget.ToString().c_str());
         }
