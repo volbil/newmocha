@@ -17,36 +17,36 @@
 
 #include "chainparamsseeds.h"
 
-// void GenesisGenerator(CBlock genesis) {
-//     printf("Searching for genesis block...\n");
+void GenesisGenerator(CBlock genesis) {
+    printf("Searching for genesis block...\n");
 
-//     uint256 hash;
-//     bool fNegative;
-//     bool fOverflow;
-//     arith_uint256 bnTarget;
-//     bnTarget.SetCompact(genesis.nBits, &fNegative, &fOverflow);
+    uint256 hash;
+    bool fNegative;
+    bool fOverflow;
+    arith_uint256 bnTarget;
+    bnTarget.SetCompact(genesis.nBits, &fNegative, &fOverflow);
 
-//     while(true)
-//     {
-//         hash = genesis.GetHash();
-//         if (UintToArith256(hash) <= bnTarget)
-//             break;
-//         if ((genesis.nNonce & 0xFFF) == 0)
-//         {
-//             printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, hash.ToString().c_str(), bnTarget.ToString().c_str());
-//         }
-//         ++genesis.nNonce;
-//         if (genesis.nNonce == 0)
-//         {
-//             printf("NONCE WRAPPED, incrementing time\n");
-//             ++genesis.nTime;
-//         }
-//     }
+    while(true)
+    {
+        hash = genesis.GetHash();
+        if (UintToArith256(hash) <= bnTarget)
+            break;
+        if ((genesis.nNonce & 0xFFF) == 0)
+        {
+            printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, hash.ToString().c_str(), bnTarget.ToString().c_str());
+        }
+        ++genesis.nNonce;
+        if (genesis.nNonce == 0)
+        {
+            printf("NONCE WRAPPED, incrementing time\n");
+            ++genesis.nTime;
+        }
+    }
 
-//     printf("block.nNonce = %u \n", genesis.nNonce);
-//     printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-//     printf("block.MerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
-// }
+    printf("block.nNonce = %u \n", genesis.nNonce);
+    printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+    printf("block.MerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
+}
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
@@ -353,9 +353,10 @@ public:
         nDefaultPort = 21105;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1587079765, 1969467223, 0x1f3fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1587079765, 1969468409, 0x1f3fffff, 1, 50 * COIN);
+        GenesisGenerator(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000000a1b87c8b06c962478b385bcbee68125fda1c7fcfe2d6dfb8450a824c"));
+        assert(consensus.hashGenesisBlock == uint256S("0x002c74ee5479b195f08cfd8294683651013343dfbc299061ac63ee12890eb24a"));
         assert(genesis.hashMerkleRoot == uint256S("0x5438c5571f813313e0ce8e06fbad9a23307b88cef086ce71f05f69f4ab9c05a5"));
 
         vSeeds.emplace_back("45.76.20.15", true); 
@@ -402,7 +403,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {0, uint256S("0x00000000a1b87c8b06c962478b385bcbee68125fda1c7fcfe2d6dfb8450a824c")},
+                {0, uint256S("0x002c74ee5479b195f08cfd8294683651013343dfbc299061ac63ee12890eb24a")},
             }
         };
 
