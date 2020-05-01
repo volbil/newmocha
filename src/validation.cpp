@@ -4797,7 +4797,7 @@ double GuessVerificationProgress(const ChainTxData& data, CBlockIndex *pindex) {
 
 bool IsYesPower(int nHeight)
 {
-    return (nHeight >= nYesPowerFork);
+    return true;
 }
 
 class CMainCleanup
