@@ -354,7 +354,6 @@ public:
         nPruneAfterHeight = 100000;
 
         genesis = CreateGenesisBlock(1587079765, 1969468409, 0x1f3fffff, 1, 50 * COIN);
-        GenesisGenerator(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x002c74ee5479b195f08cfd8294683651013343dfbc299061ac63ee12890eb24a"));
         assert(genesis.hashMerkleRoot == uint256S("0x5438c5571f813313e0ce8e06fbad9a23307b88cef086ce71f05f69f4ab9c05a5"));
