@@ -17,36 +17,36 @@
 
 #include "chainparamsseeds.h"
 
-void GenesisGenerator(CBlock genesis) {
-    printf("Searching for genesis block...\n");
+// void GenesisGenerator(CBlock genesis) {
+//     printf("Searching for genesis block...\n");
 
-    uint256 hash;
-    bool fNegative;
-    bool fOverflow;
-    arith_uint256 bnTarget;
-    bnTarget.SetCompact(genesis.nBits, &fNegative, &fOverflow);
+//     uint256 hash;
+//     bool fNegative;
+//     bool fOverflow;
+//     arith_uint256 bnTarget;
+//     bnTarget.SetCompact(genesis.nBits, &fNegative, &fOverflow);
 
-    while(true)
-    {
-        hash = genesis.GetHash();
-        if (UintToArith256(hash) <= bnTarget)
-            break;
-        if ((genesis.nNonce & 0xFFF) == 0)
-        {
-            printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, hash.ToString().c_str(), bnTarget.ToString().c_str());
-        }
-        ++genesis.nNonce;
-        if (genesis.nNonce == 0)
-        {
-            printf("NONCE WRAPPED, incrementing time\n");
-            ++genesis.nTime;
-        }
-    }
+//     while(true)
+//     {
+//         hash = genesis.GetHash();
+//         if (UintToArith256(hash) <= bnTarget)
+//             break;
+//         if ((genesis.nNonce & 0xFFF) == 0)
+//         {
+//             printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, hash.ToString().c_str(), bnTarget.ToString().c_str());
+//         }
+//         ++genesis.nNonce;
+//         if (genesis.nNonce == 0)
+//         {
+//             printf("NONCE WRAPPED, incrementing time\n");
+//             ++genesis.nTime;
+//         }
+//     }
 
-    printf("block.nNonce = %u \n", genesis.nNonce);
-    printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-    printf("block.MerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
-}
+//     printf("block.nNonce = %u \n", genesis.nNonce);
+//     printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+//     printf("block.MerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
+// }
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
