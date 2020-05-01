@@ -93,7 +93,6 @@ bool fCheckpointsEnabled = DEFAULT_CHECKPOINTS_ENABLED;
 size_t nCoinCacheUsage = 5000 * 300;
 uint64_t nPruneTarget = 0;
 int64_t nMaxTipAge = DEFAULT_MAX_TIP_AGE;
-const int nYesPowerFork = 8;
 
 std::atomic<bool> fDIP0001ActiveAtTip{false};
 std::atomic<bool> fDIP0003ActiveAtTip{false};
