@@ -28,7 +28,7 @@ void GenesisGenerator(CBlock genesis) {
 
     while(true)
     {
-        hash = genesis.GetHash();
+        hash = genesis.GetPoWHash();
         if (UintToArith256(hash) <= bnTarget)
             break;
         if ((genesis.nNonce & 0xFFF) == 0)
